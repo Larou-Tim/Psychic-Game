@@ -54,14 +54,14 @@
 								$("#guessRemain").html(guessRemaining);
 
 								if (curGuess == letterToGuess) {
-									console.log("winner winner chicken dinner");
+									alert("winner winner chicken dinner, you correctly guessed " +String.fromCharCode(letterToGuess));
 									wins++;
 									$("#winSpot").html(wins);
 									resetGame();
 
 									}
 								else if (guessRemaining == 0) {
-									console.log("loser");
+									alert("You are not Psychic, it was " +String.fromCharCode(letterToGuess) );
 									losses++;
 									$("#lossSpot").html(losses);
 									resetGame();
