@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Psychic-Game</title>
+	<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
+</head>
+<body>
+
+<h1>The Psychic Game</h1>
+
+<div>
+	<h3>Guess what letter I'm thinking of</h3>
+	<div>
+		<span>Wins: </span><span id="winSpot">0</span>
+	</div>
+	<div><span>Losses: </span> <span id="lossSpot">0</span>
+	</div>
+	<div><span>Guesses left: </span> <span id="guessRemain">10</span></div>
+	<div> <span>Your Guesses so far: </span> <span id="guessSpot"></span>
+		
+	</div>
+</div>
+	<script type="text/javascript">
+
+			var letterToGuess = Math.floor(Math.random()*(90-65+1))+65;
+			var curGuess;
+			var whatLetter;
+			var guessRemaining = 10;
+			var wins = 0;
+			var losses =0;
+
+			console.log(letterToGuess);
+
+			function resetGame() {
+				guessRemaining = 10;
+				
+				letterToGuess = Math.floor(Math.random()*(90-65+1))+65;
+				console.log(letterToGuess);
+				$("#guessRemain").html(guessRemaining);
+				$("#guessSpot").html("");
+
+			}
+
+				$(document).ready(function () {
+					$(document).keyup(function (key) {
+						
+						curGuess = key.which;
+						whatLetter = String.fromCharCode(curGuess);
+						guessRemaining--;
+
+							if (curGuess > 64 && curGuess < 91) {
+								$("#guessSpot").append("<span> " + whatLetter + "</span>");
+								$("#guessRemain").html(guessRemaining);
+
+								if (curGuess == letterToGuess) {
+									console.log("winner winner chicken dinner");
+									wins++;
+									$("#winSpot").html(wins);
+									resetGame();
+
+									}
+								else if (guessRemaining == 0) {
+									console.log("loser");
+									losses++;
+									$("#lossSpot").html(losses);
+									resetGame();
+								}
+						}
+
+					});
+				});
+			</script>
+</body>
+</html>
